@@ -1,7 +1,7 @@
 .container {
   width: 700px;
-  margin: auto;
 
+  margin: auto;
   margin-top: 150px;
   background-color: white;
   color: #262626;
@@ -18,8 +18,16 @@
   background: #707070;
 }
 
+.container h1 {
+  font-size: 60px;
+  color: #553f9a;
+  margin-left: 200px;
+  font-weight: 500;
+}
+
 .container h2 {
   font-size: 27px;
+  margin-left: 40px;
   font-weight: 500;
 }
 
@@ -31,6 +39,8 @@
   border: 1px solid #686868;
   cursor: pointer;
   margin-bottom: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
   border-radius: 9px;
   font-size: 20px;
 }
