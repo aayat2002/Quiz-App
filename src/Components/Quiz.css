@@ -1,8 +1,7 @@
 .container {
   width: 700px;
-
   margin: auto;
-  margin-top: 150px;
+  /* margin-top: 150px; */
   background-color: white;
   color: #262626;
   display: flex;
@@ -49,7 +48,18 @@
   margin: auto;
   width: 250px;
   height: 65px;
-  background: #553f9a;
+  border: hidden;
+
+  /* background: rgb(2,0,36); */
+
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  /* background: #553f9a; */
   color: white;
   font-size: 25px;
   font-weight: 500;
@@ -63,11 +73,39 @@
 }
 
 .container .correct {
-  background: #dffff2;
-  border-color: #00d397;
+  /* background: #dffff2; */
+  /* background: hsl(163, 100%, 41%); */
+  background-color: rgb(87, 178, 87);
+  border-color: green;
 }
 
 .container .wrong {
-  background: #ffebeb;
-  border-color: #ff4a4a;
+  /* background: #ffebeb; */
+  background-color: rgb(223, 85, 85);
+  border-color: red;
+}
+
+/* **Responsive mobile version */
+
+@media screen and (max-width: 600px) {
+  .container {
+    /* background-position: fixed; */
+    height: 100vh;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    background-position: fixed;
+    height: 110vh;
+    background-attachment: fixed;
+  }
+}
+
+@media screen and (max-width: 1008px) {
+  .container {
+    background-position: fixed;
+    height: 110vh;
+    background-attachment: fixed;
+  }
 }

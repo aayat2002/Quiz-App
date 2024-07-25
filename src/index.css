@@ -5,7 +5,22 @@
 
 body {
   height: 100vh;
+  /* height: 50px; */
   /* background-image: linear-gradient(#d8c7ff, #19006c); */
   background-image: url("./Components/img/background.png");
   font-family: "poppins";
+}
+
+/* **** */
+
+@media screen and (max-width: 900px) {
+  body {
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    height: 500px;
+  }
 }

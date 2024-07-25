@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Quiz.css";
 import { data } from "../assets/data";
+import Timer from "./Timer";
 
 function Quiz() {
   const [index, setIndex] = useState(0);
@@ -8,6 +9,7 @@ function Quiz() {
   let [lock, setLock] = useState(false);
   let [score, setScore] = useState(0);
   let [result, setResult] = useState(false);
+  let [timeUp, setTimeUp] = useState(false);
 
   let Option1 = useRef(null);
   let Option2 = useRef(null);
@@ -17,6 +19,15 @@ function Quiz() {
   //   let [result, setResult] = useState(false);
 
   let option_arry = [Option1, Option2, Option3, Option4];
+
+  useEffect(() => {
+    if (timeUp) {
+      setLock(true);
+      option_arry[question.ans + 1].current.classList.add("correct");
+      // next();
+    }
+  }, [timeUp]);
+
   const checkAns = (e, ans) => {
     if (lock === false) {
       if (question.ans === ans) {
@@ -28,6 +39,8 @@ function Quiz() {
         setLock(true);
         option_arry[question.ans - 1].current.classList.add("correct");
       }
+
+      setLock(true);
     }
   };
 
@@ -50,7 +63,7 @@ function Quiz() {
   //       });
   //     }
   //   };
-
+  // /NEXT BUTTON ***********
   const next = () => {
     if (lock === true) {
       setIndex((prevIndex) => {
@@ -58,11 +71,21 @@ function Quiz() {
 
         if (newIndex === data.length) {
           setResult(true);
-          return prevIndex; // Keep the index the same if it's the last question
+          // return prevIndex; // Keep the index the same if it's the last question
         }
 
+        //  else {
+        // setIndex(newIndex);
+        // setQuestion(data[newIndex]);
+        // setLock(false);
+        // setTimeUp(false);
+        // option_arry.forEach((option) => {
+        //   option.current.classList.remove("wrong");
+        //   option.current.classList.remove("correct");
+        // });
         setQuestion(data[newIndex]);
         setLock(false);
+        setTimeUp(false);
         option_arry.forEach((option) => {
           option.current.classList.remove("wrong");
           option.current.classList.remove("correct");
@@ -72,13 +95,19 @@ function Quiz() {
       });
     }
   };
-
+  // *************
   const reset = () => {
     setIndex(0);
     setQuestion(data[0]);
     setScore(0);
     setLock(false);
     setResult(false);
+    setTimeUp(false);
+
+    option_arry.forEach((option) => {
+      option.current.classList.remove("wrong");
+      option.current.classList.remove("correct");
+    });
   };
 
   return (
@@ -90,6 +119,7 @@ function Quiz() {
         <></>
       ) : (
         <>
+          <Timer setTimeUp={setTimeUp} />
           <h2>
             {index + 1}.{question.question}
           </h2>
